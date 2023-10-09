@@ -42,33 +42,16 @@ add_action('wp_enqueue_scripts', 'ws_enqueue_scripts');
 function ws_shortcode() {
     ob_start();
     ?>
-    <style>
-        #schedule-button {
-            background-color: #0073aa;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        #schedule-button:hover {
-            background-color: #005a87;
-        }
-        #date-range {
-            padding: 12px;
-            border: 2px solid #ccc;
-            border-radius: 4px;
-            font-size: 16px;
-        }
-    </style>
-    
-    <input type="text" id="date-range" readonly>
-    <button id="schedule-button">Agendar</button>
+
+    <div class="ws-scheduler-container">
+        <input type="text" id="date-range" readonly class="ws-date-input">
+        <button id="schedule-button" class="ws-schedule-button">Agendar</button>
+    </div>
     <?php
     return ob_get_clean();
 }
 add_shortcode('whatsapp_scheduler', 'ws_shortcode');
+
 
 
 // Adiciona uma página de opções ao menu principal
@@ -88,7 +71,7 @@ add_action('admin_menu', 'ws_add_options_page');
 function ws_render_options_page() {
     $ws_whatsapp_message = get_option('ws_whatsapp_message', 'Olá, quero agendar {date_start} até {date_end}');
     ?>
-    <div class="wrap">
+    <div class="wrap ws-options-wrap">
         <h1>Configurações do Agendamento</h1>
         <p>Para usar o formulário de agendamento no seu site, insira o seguinte shortcode onde desejar: <code>[whatsapp_scheduler]</code></p>
         <form method="post" action="options.php">
@@ -97,7 +80,7 @@ function ws_render_options_page() {
             do_settings_sections('agendamento');
             ?>
             <h3>Mensagem para WhatsApp</h3>
-            <textarea name="ws_whatsapp_message" rows="4" cols="50"><?php echo esc_attr($ws_whatsapp_message); ?></textarea>
+            <textarea name="ws_whatsapp_message" rows="4"><?php echo esc_attr($ws_whatsapp_message); ?></textarea>
             <p class="description">
               Use {date_start} para a data de início e {date_end} para a data de término.
             </p>
@@ -106,6 +89,7 @@ function ws_render_options_page() {
     </div>
     <?php
 }
+
 // Registra as configurações
 function ws_register_settings() {
     register_setting('ws_options_group', 'ws_whatsapp_number');

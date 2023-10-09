@@ -4,17 +4,18 @@
   background-color: #fff;
   border-radius: 4px;
   border: 1px solid #ddd;
-  width: 278px;
-  max-width: none;
-  padding: 0;
+  width: 680px;
+  max-width: 80%;
+  padding: 5;
   margin-top: 7px;
   top: 100px;
   left: 20px;
   z-index: 3001;
   display: none;
   font-family: arial;
-  font-size: 15px;
+  font-size: 12px;
   line-height: 1em;
+
 }
 
 .daterangepicker:before, .daterangepicker:after {
@@ -110,14 +111,17 @@
 
 .daterangepicker .drp-calendar {
   display: none;
-  max-width: 270px;
 }
 
+/* Calendários lado a lado com espaço entre eles */
 .daterangepicker .drp-calendar.left {
+  flex: 1;  /* Ocupa espaço igualmente */
   padding: 8px 0 8px 8px;
+  margin-right: 16px;  /* Espaço à direita */
 }
 
 .daterangepicker .drp-calendar.right {
+  flex: 1;  /* Ocupa espaço igualmente */
   padding: 8px;
 }
 
@@ -407,4 +411,69 @@
   .daterangepicker .drp-calendar.left {
     clear: none !important;
   }
+}
+
+/* Isola os estilos da página de opções */
+.ws-options-wrap {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.ws-options-wrap h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.ws-options-wrap p {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.ws-options-wrap textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+#schedule-button {
+    background-color: #0073aa;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+#schedule-button:hover {
+    background-color: #005a87;
+}
+#date-range {
+    padding: 12px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* Centraliza os botões no container de botões */
+.daterangepicker .drp-buttons {
+  text-align: center; /* Alinha os elementos filhos ao centro */
+}
+
+
+/* Container para o input e o botão */
+.ws-scheduler-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Input de data */
+.ws-date-input {
+  width: 70%;
+}
+
+/* Botão de agendamento */
+.ws-schedule-button {
+  width: 30%;
 }
